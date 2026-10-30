@@ -7,7 +7,7 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    playerChoice = prompt();
+    playerChoice = "paper";
     return playerChoice;
 }
 
@@ -36,7 +36,7 @@ function playGame() {
                 computerScore++;
             } else if (computerChoice === "paper") {
                 console.log("You won! Scissors beats Paper");
-                playerScore++;
+                humanScore++;
             }
         } else if (lowerHumanChoice === "paper") {
             if (computerChoice === "scissors") {
@@ -44,16 +44,28 @@ function playGame() {
                 computerScore++;
             } else if (computerChoice === "rock") {
                 console.log("You won! Paper beats Rock");
-                playerScore++;
+                humanScore++;
             }
         }
     }
 
-    for (let i = 0; i < 5; i++) {
-        let humanChoice = getHumanChoice();
-        playRound(humanChoice, getComputerChoice());
-    }
+    const rock = document.querySelector(".rock");
+    const paper = document.querySelector(".paper");
+    const scissors = document.querySelector(".scissors");
 
+    rock.addEventListener("click", (e) => {
+        playRound("rock", getComputerChoice());
+    });
+
+    paper.addEventListener("click", (e) => {
+        playRound("paper", getComputerChoice());
+    });
+
+    scissors.addEventListener("click", (e) => {
+        playRound("scissors", getComputerChoice());
+    });
+
+    /*
     if (humanScore > computerScore) {
         console.log("Game completed! You won!");
     } else if (humanScore < computerScore) {
@@ -61,6 +73,7 @@ function playGame() {
     } else {
         console.log("Game completed and ended in a draw!");
     }
+    */
 }
 
 playGame()
